@@ -1,4 +1,6 @@
 public class DigitalVideoDisc {
+    private static int nbDigitalVideoDiscs = 0;
+    private final int id;
     private String title;
     private String category;
     private String director;
@@ -6,25 +8,20 @@ public class DigitalVideoDisc {
     private float cost;
 
     public DigitalVideoDisc(String title) {
-        this.title = title;
+        this(title, "", 0);
     }
 
     public DigitalVideoDisc(String title, String category, float cost) {
-        this.title = title;
-        this.category = category;
-        this.cost = cost;
+        this(title, category, "", cost);
     }
-
 
     public DigitalVideoDisc(String title, String category, String director, float cost) {
-        this.title = title;
-        this.category = category;
-        this.director = director;
-        this.cost = cost;
+        this(title, category, director, 0, cost);
     }
 
-
     public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
+        nbDigitalVideoDiscs++;
+        this.id = nbDigitalVideoDiscs;
         this.title = title;
         this.category = category;
         this.director = director;
@@ -44,31 +41,46 @@ public class DigitalVideoDisc {
         return category;
     }
 
-    public String getDirector() {
-        return director;
-    }
-
-    public int getLength() {
-        return length;
-    }
-
-    public float getCost() {
-        return cost;
-    }
-
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getDirector() {
+        return director;
     }
 
     public void setDirector(String director) {
         this.director = director;
     }
 
+    public int getLength() {
+        return length;
+    }
+
     public void setLength(int length) {
         this.length = length;
     }
 
+    public float getCost() {
+        return cost;
+    }
+
     public void setCost(float cost) {
         this.cost = cost;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return "DigitalVideoDisc{" +
+                "cost=" + cost +
+                ", length=" + length +
+                ", director='" + director + '\'' +
+                ", category='" + category + '\'' +
+                ", title='" + title + '\'' +
+                '}';
     }
 }
