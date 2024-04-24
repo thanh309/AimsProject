@@ -8,15 +8,15 @@ public class DigitalVideoDisc {
     private float cost;
 
     public DigitalVideoDisc(String title) {
-        this(title, "", 0);
+        this(title, "None", -1);
     }
 
     public DigitalVideoDisc(String title, String category, float cost) {
-        this(title, category, "", cost);
+        this(title, category, "None", cost);
     }
 
     public DigitalVideoDisc(String title, String category, String director, float cost) {
-        this(title, category, director, 0, cost);
+        this(title, category, director, -1, cost);
     }
 
     public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
@@ -75,12 +75,17 @@ public class DigitalVideoDisc {
 
     @Override
     public String toString() {
-        return "DigitalVideoDisc{" +
-                "cost=" + cost +
-                ", length=" + length +
-                ", director='" + director + '\'' +
-                ", category='" + category + '\'' +
-                ", title='" + title + '\'' +
-                '}';
+        return String.format(
+                "DVD - %s - %s - %s - %d: $%f",
+                title,
+                category,
+                director,
+                length,
+                cost
+        );
+    }
+
+    public boolean isMatch(String title) {
+        return title.equals(this.title);
     }
 }

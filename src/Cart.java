@@ -1,8 +1,7 @@
 public class Cart {
     public static final int MAX_NUMBERS_ORDERED = 20;
-
-    private int qtyOrdered = 0;
     private final DigitalVideoDisc[] itemsOrdered = new DigitalVideoDisc[MAX_NUMBERS_ORDERED];
+    private int qtyOrdered = 0;
 
     public void addDigitalVideoDisc(DigitalVideoDisc disc) {
         if (this.qtyOrdered < MAX_NUMBERS_ORDERED) {
@@ -81,6 +80,37 @@ public class Cart {
             result += this.itemsOrdered[i].getCost();
         }
         return result;
+    }
+
+    public void print() {
+        System.out.println("***********************CART***********************");
+        System.out.println("Ordered Items:");
+        for (int i = 1; i <= qtyOrdered; i++) {
+            System.out.println(i + ". " + itemsOrdered[i - 1]);
+        }
+        System.out.println("Total cost: $" + totalCost());
+        System.out.println("**************************************************");
+    }
+
+    public void searchByID(int id) {
+        for (int i = 0; i < qtyOrdered; i++) {
+            if (id == itemsOrdered[i].getId()) {
+                System.out.println(itemsOrdered[i]);
+                return;
+            }
+        }
+        System.out.printf("No DVD with id %d found.\n", id);
+    }
+
+    public void searchByTitle(String title) {
+        boolean found = false;
+        for (int i = 0; i < qtyOrdered; i++) {
+            if (itemsOrdered[i].isMatch(title)) {
+                found = true;
+                System.out.println(itemsOrdered[i]);
+            }
+        }
+        if (!found) System.out.printf("No DVD with title %s found.\n", title);
     }
 
 }
