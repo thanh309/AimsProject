@@ -38,6 +38,18 @@ public class Cart {
         }
     }
 
+    public void addDigitalVideoDisc(DigitalVideoDisc dvd1, DigitalVideoDisc dvd2) {
+        if (qtyOrdered + 2 > MAX_NUMBERS_ORDERED) {
+            System.out.println("The cart is full");
+        } else {
+            itemsOrdered[qtyOrdered] = dvd1;
+            qtyOrdered++;
+            itemsOrdered[qtyOrdered] = dvd2;
+            qtyOrdered++;
+            System.out.println("The discs has been added");
+        }
+    }
+
     private int findDiscIndex(DigitalVideoDisc disc) {
         for (int i = 0; i < this.qtyOrdered; i++) {
             if (this.itemsOrdered[i] == disc) return i;
