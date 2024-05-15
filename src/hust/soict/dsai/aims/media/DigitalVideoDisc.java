@@ -1,13 +1,9 @@
-package hust.soict.dsai.aims.disc;
+package hust.soict.dsai.aims.media;
 
-public class DigitalVideoDisc {
+public class DigitalVideoDisc extends Media {
     private static int nbDigitalVideoDiscs = 0;
-    private final int id;
-    private String title;
-    private String category;
     private String director;
     private int length;
-    private float cost;
 
     public DigitalVideoDisc(String title) {
         this(title, "None", -1);
@@ -23,29 +19,14 @@ public class DigitalVideoDisc {
 
     public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
         nbDigitalVideoDiscs++;
-        this.id = nbDigitalVideoDiscs;
-        this.title = title;
-        this.category = category;
-        this.director = director;
-        this.length = length;
-        this.cost = cost;
+        setId(nbDigitalVideoDiscs);
+        setTitle(title);
+        setCategory(category);
+        setCost(cost);
+        setDirector(director);
+        setLength(length);
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
 
     public String getDirector() {
         return director;
@@ -63,31 +44,20 @@ public class DigitalVideoDisc {
         this.length = length;
     }
 
-    public float getCost() {
-        return cost;
-    }
-
-    public void setCost(float cost) {
-        this.cost = cost;
-    }
-
-    public int getId() {
-        return id;
-    }
 
     @Override
     public String toString() {
         return String.format(
                 "DVD - %s - %s - %s - %d: $%f",
-                title,
-                category,
-                director,
-                length,
-                cost
+                getTitle(),
+                getCategory(),
+                getDirector(),
+                getLength(),
+                getCost()
         );
     }
 
     public boolean isMatch(String title) {
-        return title.equals(this.title);
+        return title.equals(getTitle());
     }
 }

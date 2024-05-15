@@ -1,6 +1,6 @@
 package hust.soict.dsai.aims.cart;
 
-import hust.soict.dsai.aims.disc.DigitalVideoDisc;
+import hust.soict.dsai.aims.media.DigitalVideoDisc;
 
 public class Cart {
     public static final int MAX_NUMBERS_ORDERED = 20;
@@ -17,11 +17,11 @@ public class Cart {
         }
     }
 
-//    public void addDigitalVideoDisc(hust.soict.dsai.aims.disc.DigitalVideoDisc[] dvdList) {
+//    public void addDigitalVideoDisc(hust.soict.dsai.aims.media.DigitalVideoDisc[] dvdList) {
 //        if (qtyOrdered + dvdList.length > MAX_NUMBERS_ORDERED) {
 //            System.out.println("The cart is full");
 //        } else {
-//            for (hust.soict.dsai.aims.disc.DigitalVideoDisc disc : dvdList) {
+//            for (hust.soict.dsai.aims.media.DigitalVideoDisc disc : dvdList) {
 //                itemsOrdered[qtyOrdered] = disc;
 //                qtyOrdered++;
 //            }
