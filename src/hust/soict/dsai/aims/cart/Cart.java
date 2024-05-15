@@ -19,11 +19,11 @@ public class Cart {
         }
     }
 
-    public void addMedia(Media... medium) {
-        if (itemsOrdered.size() + medium.length > MAX_NUMBERS_ORDERED) {
+    public void addMedia(Media... mediaList) {
+        if (itemsOrdered.size() + mediaList.length > MAX_NUMBERS_ORDERED) {
             System.out.println("The cart is full");
         } else {
-            itemsOrdered.addAll(Arrays.asList(medium));
+            itemsOrdered.addAll(Arrays.asList(mediaList));
         }
     }
 
