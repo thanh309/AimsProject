@@ -23,4 +23,11 @@ public class Disc extends Media {
     public int getLength() {
         return length;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                ", director: " + getDirector() +
+                ", length: " + getLength();
+    }
 }

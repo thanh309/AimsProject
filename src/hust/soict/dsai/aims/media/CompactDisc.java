@@ -50,5 +50,16 @@ public class CompactDisc extends Disc implements Playable {
             track.play();
         }
     }
+
+    @Override
+    public String toString() {
+        StringBuilder tracksInfo = new StringBuilder();
+        for (Track track : tracks) {
+            tracksInfo.append("  - ").append(track.toString()).append('\n');
+        }
+        return super.toString() +
+                ", artist: " + getArtist() +
+                ", tracks:\n" + tracksInfo;
+    }
 }
 

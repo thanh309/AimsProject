@@ -32,4 +32,9 @@ public class Track implements Playable {
         Track track = (Track) o;
         return length == track.length && Objects.equals(title, track.title);
     }
+
+    @Override
+    public String toString() {
+        return getTitle() + ", length: " + getLength();
+    }
 }

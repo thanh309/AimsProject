@@ -47,4 +47,13 @@ public abstract class Media {
         Media media = (Media) o;
         return Objects.equals(getTitle(), media.getTitle());
     }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() +
+                ", ID: " + getId() +
+                ", title: " + getTitle() + '\'' +
+                ", category: " + getCategory() + '\'' +
+                ", cost: $" + getCost();
+    }
 }
