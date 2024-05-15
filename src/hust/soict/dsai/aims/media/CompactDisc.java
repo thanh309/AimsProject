@@ -1,17 +1,38 @@
 package hust.soict.dsai.aims.media;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CompactDisc extends Disc implements Playable {
     private String artist;
-    private List<Track> tracks;
-
-    public String getArtist() {
-        return artist;
-    }
+    private List<Track> tracks = new ArrayList<>();
 
     public CompactDisc(String artist) {
         this.artist = artist;
+    }
+
+    public CompactDisc(String title, String category, String director, float cost, String artist, List<Track> tracks) {
+        super(title, category, director, cost);
+        this.artist = artist;
+        this.tracks = tracks;
+    }
+    public CompactDisc(String title, String category, String director, float cost, String artist) {
+        super(title, category, director, cost);
+        this.artist = artist;
+    }
+
+    public CompactDisc(String title, String category, float cost, String artist) {
+        super(title, category, cost);
+        this.artist = artist;
+    }
+
+    public CompactDisc(String title, String artist) {
+        super(title);
+        this.artist = artist;
+    }
+
+    public String getArtist() {
+        return artist;
     }
 
     public void addTrack(Track track) {
@@ -59,7 +80,7 @@ public class CompactDisc extends Disc implements Playable {
         }
         return super.toString() +
                 ", artist: " + getArtist() +
-                ", tracks:\n" + tracksInfo;
+                ", tracks:\n" + tracksInfo.toString().replaceAll("\n$", "");
     }
 }
 

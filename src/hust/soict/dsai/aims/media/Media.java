@@ -7,6 +7,26 @@ public abstract class Media {
     private String title;
     private String category;
     private float cost;
+    protected static int nbMedia = 0;
+
+    public Media(String title, String category, float cost) {
+        this.title = title;
+        this.category = category;
+        this.cost = cost;
+        nbMedia++;
+        this.id = nbMedia;
+    }
+
+    public Media(String title, String category) {
+        this(title, category, 0f);
+    }
+
+    public Media(String title) {
+        this(title, "");
+    }
+
+    public Media(){
+    }
 
     public int getId() {
         return id;

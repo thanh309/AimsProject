@@ -10,6 +10,15 @@ public class Book extends Media {
         super();
     }
 
+    public Book(String title, String category, float cost) {
+        super(title, category, cost);
+    }
+
+    public Book(String title, String category, float cost, List<String> authorList) {
+        super(title, category, cost);
+        authors.addAll(authorList);
+    }
+
     public void addAuthor(String authorName) {
         if (authors.contains(authorName)) {
             return;
@@ -25,10 +34,10 @@ public class Book extends Media {
     public String toString() {
         StringBuilder authorsInfo = new StringBuilder();
         for (String author : authors) {
-            authorsInfo.append(author).append(' ');
+            authorsInfo.append(author).append(", ");
         }
         return super.toString() +
-                ", authors: [" + authorsInfo.toString().trim() + "]";
+                ", authors: [" + authorsInfo.toString().trim().replaceAll(",$", "") + "]";
     }
 }
 
