@@ -1,5 +1,7 @@
 package hust.soict.dsai.aims.media;
 
+import java.util.Objects;
+
 public abstract class Media {
     private int id;
     private String title;
@@ -36,5 +38,13 @@ public abstract class Media {
 
     public void setCost(float cost) {
         this.cost = cost;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Media)) return false;
+        Media media = (Media) o;
+        return Objects.equals(getTitle(), media.getTitle());
     }
 }
