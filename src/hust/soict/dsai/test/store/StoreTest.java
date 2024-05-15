@@ -18,13 +18,13 @@ public class StoreTest {
         DigitalVideoDisc dvd10 = new DigitalVideoDisc("The Matrix", "Sci-Fi", "The Wachowski Brothers", 136, 21.95f);
 
         Store store = new Store();
-        store.addDVD(dvd1, dvd2, dvd3, dvd4, dvd5, dvd6, dvd7, dvd8);
+        store.addMedia(dvd1, dvd2, dvd3, dvd4, dvd5, dvd6, dvd7, dvd8);
 
         System.out.println("Number of discs in store: " + store.numberOfDiscs());
 
-        store.removeDVD(dvd2);
-        store.removeDVD(dvd4);
-        store.removeDVD(dvd9);
+        store.removeMedia(dvd2);
+        store.removeMedia(dvd4);
+        store.removeMedia(dvd9);
         System.out.println("Number of discs in store now: " + store.numberOfDiscs());
     }
 }
