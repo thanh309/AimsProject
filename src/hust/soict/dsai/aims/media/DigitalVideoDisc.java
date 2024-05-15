@@ -1,9 +1,7 @@
 package hust.soict.dsai.aims.media;
 
-public class DigitalVideoDisc extends Media {
+public class DigitalVideoDisc extends Disc {
     private static int nbDigitalVideoDiscs = 0;
-    private String director;
-    private int length;
 
     public DigitalVideoDisc(String title) {
         this(title, "None", -1);
@@ -26,24 +24,6 @@ public class DigitalVideoDisc extends Media {
         setDirector(director);
         setLength(length);
     }
-
-
-    public String getDirector() {
-        return director;
-    }
-
-    public void setDirector(String director) {
-        this.director = director;
-    }
-
-    public int getLength() {
-        return length;
-    }
-
-    public void setLength(int length) {
-        this.length = length;
-    }
-
 
     @Override
     public String toString() {
