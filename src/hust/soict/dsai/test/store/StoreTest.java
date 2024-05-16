@@ -20,11 +20,11 @@ public class StoreTest {
         Store store = new Store();
         store.addMedia(dvd1, dvd2, dvd3, dvd4, dvd5, dvd6, dvd7, dvd8);
 
-        System.out.println("Number of discs in store: " + store.numberOfDiscs());
+        System.out.println("Number of discs in store: " + store.numberOfMedia());
 
         store.removeMedia(dvd2);
         store.removeMedia(dvd4);
         store.removeMedia(dvd9);
-        System.out.println("Number of discs in store now: " + store.numberOfDiscs());
+        System.out.println("Number of discs in store now: " + store.numberOfMedia());
     }
 }

@@ -27,7 +27,28 @@ public class Store {
         System.out.println("Item is not in store");
     }
 
-    public int numberOfDiscs() {
+    public int numberOfMedia() {
         return itemsInStore.size();
+    }
+
+    public void print() {
+        System.out.println("-----------------------Store-----------------------");
+        System.out.println("Number of item: " + numberOfMedia());
+        System.out.println();
+        for (Media media : itemsInStore) {
+            System.out.println(media);
+        }
+        System.out.println("---------------------------------------------------");
+    }
+
+    public Media searchByTitle(String title) {
+        for (Media media : itemsInStore) {
+            if (media.getTitle().equalsIgnoreCase(title)) {
+                System.out.println(media);
+                return media;
+            }
+        }
+        System.out.printf("No item with title %s found.\n", title);
+        return null;
     }
 }

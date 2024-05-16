@@ -47,36 +47,50 @@ public class Cart {
     public void print() {
         System.out.println("***********************CART***********************");
         System.out.println("Ordered Items:");
-        int i = 1;
         for (Media media : itemsOrdered) {
-            System.out.println(i + ". " + media);
-            i++;
+            System.out.println(media);
         }
         System.out.println("Total cost: $" + totalCost());
         System.out.println("**************************************************");
     }
 
-    public void searchByID(int id) {
+    public Media searchByID(int id) {
         for (Media media : itemsOrdered) {
             if (id == media.getId()) {
                 System.out.println(media);
-                return;
+                return media;
             }
         }
         System.out.printf("No item with id %d found.\n", id);
+        return null;
     }
 
-    public void searchByTitle(String title) {
-        boolean found = false;
+    public Media searchByTitle(String title) {
         for (Media media : itemsOrdered) {
-            if (media.getTitle().equals(title)) {
-                found = true;
+            if (media.getTitle().equalsIgnoreCase(title)) {
+                System.out.println(media);
+                return media;
+            }
+        }
+        System.out.printf("No item with title %s found.\n", title);
+        return null;
+    }
+
+    public void sort(boolean byCostTitle) {
+        if (byCostTitle) {
+            itemsOrdered.sort(Media.COMPARE_BY_COST_TITLE);
+            return;
+        }
+        itemsOrdered.sort(Media.COMPARE_BY_TITLE_COST);
+    }
+
+    public void filter(String query) {
+        for (Media media : itemsOrdered) {
+            if (media.getTitle().toLowerCase().contains(query.toLowerCase())) {
                 System.out.println(media);
             }
         }
-        if (!found) System.out.printf("No item with title %s found.\n", title);
     }
-
 }
 
 

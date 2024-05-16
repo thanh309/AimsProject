@@ -81,8 +81,8 @@ public abstract class Media {
     public String toString() {
         return getClass().getSimpleName() +
                 ", ID: " + getId() +
-                ", title: " + getTitle() + '\'' +
-                ", category: " + getCategory() + '\'' +
+                ", title: " + getTitle() +
+                ", category: " + getCategory() +
                 ", cost: $" + getCost();
     }
 }
