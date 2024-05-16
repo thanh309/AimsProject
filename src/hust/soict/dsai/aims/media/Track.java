@@ -3,8 +3,8 @@ package hust.soict.dsai.aims.media;
 import java.util.Objects;
 
 public class Track implements Playable {
-    private String title;
-    private int length;
+    private final String title;
+    private final int length;
 
     public Track(String title, int length) {
         this.title = title;

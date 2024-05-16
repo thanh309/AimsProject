@@ -26,23 +26,11 @@ public abstract class Media {
         this.id = nbMedia;
     }
 
-    public Media(String title, String category) {
-        this(title, category, 0f);
-    }
-
-    public Media(String title) {
-        this(title, "");
-    }
-
     public Media(){
     }
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -57,16 +45,8 @@ public abstract class Media {
         return category;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
     public float getCost() {
         return cost;
-    }
-
-    public void setCost(float cost) {
-        this.cost = cost;
     }
 
     @Override

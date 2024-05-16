@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Book extends Media {
-    private List<String> authors = new ArrayList<>();
+    private final List<String> authors = new ArrayList<>();
 
     public Book() {
         super();

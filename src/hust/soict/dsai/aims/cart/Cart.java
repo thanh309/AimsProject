@@ -8,16 +8,7 @@ import java.util.List;
 
 public class Cart {
     public static final int MAX_NUMBERS_ORDERED = 20;
-    private List<Media> itemsOrdered = new ArrayList<>();
-
-    public void addMedia(Media media) {
-        if (itemsOrdered.size() == MAX_NUMBERS_ORDERED) {
-            System.out.println("The cart is full");
-        } else {
-            itemsOrdered.add(media);
-            System.out.println("The item has been added");
-        }
-    }
+    private final List<Media> itemsOrdered = new ArrayList<>();
 
     public void addMedia(Media... mediaList) {
         if (itemsOrdered.size() + mediaList.length > MAX_NUMBERS_ORDERED) {

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CompactDisc extends Disc implements Playable {
-    private String artist;
+    private final String artist;
     private List<Track> tracks = new ArrayList<>();
 
     public CompactDisc(String artist) {
