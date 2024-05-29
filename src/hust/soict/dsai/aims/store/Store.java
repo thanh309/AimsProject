@@ -8,6 +8,11 @@ import java.util.List;
 
 public class Store {
     private static final int MAX_CAPACITY = 1000;
+
+    public List<Media> getItemsInStore() {
+        return itemsInStore;
+    }
+
     private final List<Media> itemsInStore = new ArrayList<>();
 
     public void addMedia(Media... mediaList) {
