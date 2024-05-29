@@ -5,13 +5,14 @@ import hust.soict.dsai.aims.media.Playable;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MediaStore extends JPanel {
-    private Media media;
+    private final StoreScreen storeScreen;
+    public MediaStore(Media media, StoreScreen storeScreen) {
 
-    public MediaStore(Media media) {
-
-        this.media = media;
+        this.storeScreen = storeScreen;
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         JLabel title = new JLabel(media.getTitle());
@@ -24,9 +25,14 @@ public class MediaStore extends JPanel {
         JPanel container = new JPanel();
         container.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-        container.add(new JButton("Add to cart"));
+        JButton addToCartButton = new JButton("Add to cart");
+        addToCartButton.addActionListener(new AddToCartListener(media));
+        container.add(addToCartButton);
+
         if (media instanceof Playable) {
-            container.add(new JButton("Play"));
+            JButton playButton = new JButton("Play");
+            playButton.addActionListener(new PlayListener(media));
+            container.add(playButton);
         }
 
         this.add(Box.createVerticalGlue());
@@ -37,5 +43,31 @@ public class MediaStore extends JPanel {
 
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
+    }
+
+    private class AddToCartListener implements ActionListener {
+        private final Media media;
+
+        public AddToCartListener(Media media) {
+            this.media = media;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            storeScreen.getCart().addMedia(media);
+        }
+    }
+
+    private static class PlayListener implements ActionListener {
+        private final Playable playableMedia;
+
+        public PlayListener(Media media) {
+            this.playableMedia = (Playable) media;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            this.playableMedia.play();
+        }
     }
 }

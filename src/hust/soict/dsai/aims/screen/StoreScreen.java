@@ -1,5 +1,6 @@
 package hust.soict.dsai.aims.screen;
 
+import hust.soict.dsai.aims.cart.Cart;
 import hust.soict.dsai.aims.media.*;
 import hust.soict.dsai.aims.store.Store;
 
@@ -8,10 +9,13 @@ import java.awt.*;
 import java.util.List;
 
 public class StoreScreen extends JFrame {
-    private final Store store;
 
-    public StoreScreen(Store store) {
+    private final Store store;
+    private final Cart cart;
+
+    public StoreScreen(Store store, Cart cart) {
         this.store = store;
+        this.cart = cart;
         Container cp = getContentPane();
         cp.setLayout(new BorderLayout());
 
@@ -21,6 +25,14 @@ public class StoreScreen extends JFrame {
         setVisible(true);
         setTitle("Store");
         setSize(1024, 768);
+    }
+
+    public Store getStore() {
+        return store;
+    }
+
+    public Cart getCart() {
+        return cart;
     }
 
     JPanel createNorth() {
@@ -76,7 +88,7 @@ public class StoreScreen extends JFrame {
         center.setLayout(new GridLayout(3, 3, 2, 2));
         List<Media> mediaInStore = store.getItemsInStore();
         for (int i = 0; i < 9; i++) {
-            MediaStore cell = new MediaStore(mediaInStore.get(i));
+            MediaStore cell = new MediaStore(mediaInStore.get(i), this);
             center.add(cell);
         }
         return center;
@@ -111,6 +123,6 @@ public class StoreScreen extends JFrame {
 
         store.addMedia(dvd1, dvd1vip, dvd2, dvd3, dvd4, dvd4vip, dvd5, dvd6, dvd7, dvd8, dvd9, dvd10, cd, book);
 
-        StoreScreen storeScreen = new StoreScreen(store);
+        StoreScreen storeScreen = new StoreScreen(store, new Cart());
     }
 }
