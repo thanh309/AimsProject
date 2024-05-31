@@ -3,8 +3,7 @@ package hust.soict.dsai.aims.screen.controller;
 import hust.soict.dsai.aims.cart.Cart;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -56,6 +55,12 @@ public class CartScreenController {
                         updateButtonBar(newValue);
                     }
                 });
+    }
+
+    @FXML
+    void btnRemovePressed(ActionEvent event) {
+        Media media = tblMedia.getSelectionModel().getSelectedItem();
+        cart.removeMedia(media);
     }
 
     void updateButtonBar(Media media) {
