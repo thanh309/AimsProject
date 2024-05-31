@@ -7,5 +7,15 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="" scope="PROVIDED">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../../../JetBrains/external_lib/openjfx-21.0.3_windows-x64_bin-sdk/javafx-sdk-21.0.3/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../../../JetBrains/external_lib/openjfx-21.0.3_windows-x64_bin-sdk/javafx-sdk-21.0.3/lib" recursive="false" />
+      </library>
+    </orderEntry>
   </component>
 </module>
