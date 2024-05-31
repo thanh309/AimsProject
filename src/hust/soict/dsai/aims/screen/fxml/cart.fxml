@@ -82,8 +82,8 @@
             </TableView>
             <ButtonBar>
               <buttons>
-                <Button mnemonicParsing="false" text="Play" />
-                  <Button mnemonicParsing="false" text="Remove" />
+                <Button fx:id="btnPlay" mnemonicParsing="false" text="Play" />
+                  <Button fx:id="btnRemove" mnemonicParsing="false" text="Remove" />
               </buttons>
                <VBox.margin>
                   <Insets bottom="80.0" top="10.0" />
