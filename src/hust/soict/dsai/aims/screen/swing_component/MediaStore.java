@@ -1,7 +1,8 @@
-package hust.soict.dsai.aims.screen;
+package hust.soict.dsai.aims.screen.swing_component;
 
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
+import hust.soict.dsai.aims.screen.StoreScreen;
 
 import javax.swing.*;
 import java.awt.*;

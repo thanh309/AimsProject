@@ -24,6 +24,11 @@ public class CartScreen extends JFrame {
         this.add(fxPanel);
         this.setTitle("Cart");
         this.setVisible(true);
+
+        Runnable windowCloser = () -> SwingUtilities.invokeLater(
+                () -> this.setVisible(false)
+        );
+
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -32,6 +37,9 @@ public class CartScreen extends JFrame {
                             .getResource("/hust/soict/dsai/aims/screen/fxml/cart.fxml"));
                     CartScreenController controller =
                             new CartScreenController(cart, store);
+
+                    controller.setWindowCloser(windowCloser);
+
                     loader.setController(controller);
                     Parent root = loader.load();
                     fxPanel.setScene(new Scene(root));

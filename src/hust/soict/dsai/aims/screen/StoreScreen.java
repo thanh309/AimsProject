@@ -2,10 +2,13 @@ package hust.soict.dsai.aims.screen;
 
 import hust.soict.dsai.aims.cart.Cart;
 import hust.soict.dsai.aims.media.*;
+import hust.soict.dsai.aims.screen.swing_component.MediaStore;
 import hust.soict.dsai.aims.store.Store;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 public class StoreScreen extends JFrame {
@@ -53,7 +56,10 @@ public class StoreScreen extends JFrame {
 
         menu.add(smUpdateStore);
         menu.add(new JMenuItem("View store"));
-        menu.add(new JMenuItem("View cart"));
+
+        JMenuItem menuViewCart = new JMenuItem("View cart");
+        menuViewCart.addActionListener(new viewCartListener());
+        menu.add(menuViewCart);
 
         JMenuBar menuBar = new JMenuBar();
         menuBar.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -92,6 +98,14 @@ public class StoreScreen extends JFrame {
             center.add(cell);
         }
         return center;
+    }
+
+    protected class viewCartListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            dispose();
+            new CartScreen(cart, store);
+        }
     }
 
     public static void main(String[] args) {

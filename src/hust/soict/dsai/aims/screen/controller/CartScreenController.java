@@ -109,6 +109,18 @@ public class CartScreenController {
         ((Playable) media).play();
     }
 
+    private Runnable windowCloser;
+
+    @FXML
+    void menuViewStorePressed(ActionEvent event) {
+        new StoreScreen(store, cart);
+        windowCloser.run();
+    }
+
+    public void setWindowCloser(Runnable windowCloser) {
+        this.windowCloser = windowCloser;
+    }
+
     void updateButtonBar(Media media) {
         btnRemove.setVisible(true);
         btnPlay.setVisible(media instanceof Playable);
