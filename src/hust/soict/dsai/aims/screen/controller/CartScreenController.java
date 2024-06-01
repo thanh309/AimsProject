@@ -5,9 +5,7 @@ import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class CartScreenController {
@@ -31,6 +29,18 @@ public class CartScreenController {
     @FXML
     private TableColumn<Media, Float> colMediaCost;
 
+    @FXML
+    private RadioButton radioBtnFilterId;
+
+    @FXML
+    private RadioButton radioBtnFilterTitle;
+
+    @FXML
+    private ToggleGroup filterCategory;
+
+    @FXML
+    private TextField tfFilter;
+
     public CartScreenController(Cart cart) {
         super();
         this.cart = cart;
@@ -44,7 +54,8 @@ public class CartScreenController {
                 new PropertyValueFactory<>("category"));
         colMediaCost.setCellValueFactory(
                 new PropertyValueFactory<>("cost"));
-        tblMedia.setItems(this.cart.getItemsOrdered());
+        // show the filtered list instead
+        tblMedia.setItems(this.cart.getFilteredList());
 
         btnPlay.setVisible(false);
         btnRemove.setVisible(false);
@@ -55,6 +66,7 @@ public class CartScreenController {
                         updateButtonBar(newValue);
                     }
                 });
+        tfFilter.textProperty().addListener((observable, oldValue, newValue) -> showFilteredMedia(newValue));
     }
 
     @FXML
@@ -66,6 +78,20 @@ public class CartScreenController {
     void updateButtonBar(Media media) {
         btnRemove.setVisible(true);
         btnPlay.setVisible(media instanceof Playable);
+    }
+
+    void showFilteredMedia(String query) {
+        this.cart.getFilteredList().setPredicate(media -> {
+            RadioButton selectedFilter = (RadioButton) filterCategory.getSelectedToggle();
+            if (selectedFilter == radioBtnFilterTitle) {
+                return media.getTitle().toLowerCase().contains(query.toLowerCase());
+            }
+            try {
+                return media.getId() == Integer.parseInt(query);
+            } catch (Exception e) {
+                return false;
+            }
+        });
     }
 }
 
