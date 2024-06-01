@@ -26,6 +26,11 @@ public class Track implements Playable {
     }
 
     @Override
+    public void playGUI() {
+        playGUI(title, length);
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Track)) return false;

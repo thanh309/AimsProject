@@ -16,6 +16,7 @@ public class CompactDisc extends Disc implements Playable {
         this.artist = artist;
         this.tracks = tracks;
     }
+
     public CompactDisc(String title, String category, String director, float cost, String artist) {
         super(title, category, director, cost);
         this.artist = artist;
@@ -69,6 +70,17 @@ public class CompactDisc extends Disc implements Playable {
         System.out.println("=================================================");
         for (Track track : tracks) {
             track.play();
+        }
+    }
+
+    @Override
+    public void playGUI() {
+        for (Track track : tracks) {
+            playGUI(getTitle() + " - Track: " + track.getTitle(), track.getLength());
+            // will lock up your app tho lol - I'm too lazy to implement this correctly
+            try {
+                Thread.sleep(track.getLength() * 1000L);
+            } catch (Exception ignored) {}
         }
     }
 

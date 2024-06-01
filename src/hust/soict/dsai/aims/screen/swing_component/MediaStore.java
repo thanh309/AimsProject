@@ -68,7 +68,7 @@ public class MediaStore extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            this.playableMedia.play();
+            this.playableMedia.playGUI();
         }
     }
 }

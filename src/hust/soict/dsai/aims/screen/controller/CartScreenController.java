@@ -118,7 +118,7 @@ public class CartScreenController {
     @FXML
     void btnPlayPressed(ActionEvent event) {
         Media media = this.tblMedia.getSelectionModel().getSelectedItem();
-        ((Playable) media).play();
+        ((Playable) media).playGUI();
     }
 
     private Runnable windowCloser;
