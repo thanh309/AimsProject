@@ -6,6 +6,7 @@ import hust.soict.dsai.aims.media.CompactDisc;
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.Track;
 import hust.soict.dsai.aims.screen.controller.CartScreenController;
+import hust.soict.dsai.aims.store.Store;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +17,7 @@ import javax.swing.*;
 import java.io.IOException;
 
 public class CartScreen extends JFrame {
-    public CartScreen(Cart cart) {
+    public CartScreen(Cart cart, Store store) {
         super();
         this.setSize(1024, 768);
         JFXPanel fxPanel = new JFXPanel();
@@ -30,7 +31,7 @@ public class CartScreen extends JFrame {
                     FXMLLoader loader = new FXMLLoader(getClass()
                             .getResource("/hust/soict/dsai/aims/screen/fxml/cart.fxml"));
                     CartScreenController controller =
-                            new CartScreenController(cart);
+                            new CartScreenController(cart, store);
                     loader.setController(controller);
                     Parent root = loader.load();
                     fxPanel.setScene(new Scene(root));
@@ -66,8 +67,11 @@ public class CartScreen extends JFrame {
         Book book = new Book("Good Omens", "Novel", 15.99f);
         book.addAuthor("Terry Pratchett");
         book.addAuthor("Neil Gaiman");
+
         Cart myCart = new Cart();
+        Store store = new Store();
         myCart.addMedia(dvd1, dvd1vip, dvd2, dvd3, dvd4, dvd4vip, dvd5, dvd6, dvd7, dvd8, dvd9, dvd10, cd, book);
-        CartScreen cartScreen = new CartScreen(myCart);
+        store.addMedia(dvd1, dvd1vip, dvd2, dvd3, dvd4, dvd4vip, dvd5, dvd6, dvd7, cd, book);
+        new CartScreen(myCart, store);
     }
 }

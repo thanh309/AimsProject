@@ -3,6 +3,8 @@ package hust.soict.dsai.aims.screen.controller;
 import hust.soict.dsai.aims.cart.Cart;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
+import hust.soict.dsai.aims.screen.StoreScreen;
+import hust.soict.dsai.aims.store.Store;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class CartScreenController {
     private Cart cart;
+    private Store store;
 
     @FXML
     private Button btnPlay;
@@ -48,9 +51,13 @@ public class CartScreenController {
     @FXML
     private Label totalCost;
 
-    public CartScreenController(Cart cart) {
+    @FXML
+    private MenuItem menuViewStore;
+
+    public CartScreenController(Cart cart, Store store) {
         super();
         this.cart = cart;
+        this.store = store;
     }
 
     @FXML
