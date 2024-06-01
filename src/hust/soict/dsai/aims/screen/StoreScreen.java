@@ -58,9 +58,18 @@ public class StoreScreen extends JFrame {
         JMenu menu = new JMenu("Options");
 
         JMenu smUpdateStore = new JMenu("Update Store");
-        smUpdateStore.add(new JMenuItem("Add Book"));
-        smUpdateStore.add(new JMenuItem("Add CD"));
-        smUpdateStore.add(new JMenuItem("Add DVD"));
+
+        JMenuItem menuAddBook = new JMenuItem("Add Book");
+        menuAddBook.addActionListener(new addBookListener());
+        smUpdateStore.add(menuAddBook);
+
+        JMenuItem menuAddCD = new JMenuItem("Add CD");
+        smUpdateStore.add(menuAddCD);
+        menuAddCD.addActionListener(new addCDListener());
+
+        JMenuItem menuAddDVD = new JMenuItem("Add DVD");
+        menuAddDVD.addActionListener(new addDVDListener());
+        smUpdateStore.add(menuAddDVD);
 
         menu.add(smUpdateStore);
         JMenuItem menuViewStore = new JMenuItem("View store");
@@ -173,6 +182,30 @@ public class StoreScreen extends JFrame {
         public void actionPerformed(ActionEvent e) {
             dispose();
             new StoreScreen(store, cart);
+        }
+    }
+
+    protected class addBookListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            dispose();
+            new AddBookToStoreScreen(store, cart);
+        }
+    }
+
+    protected class addCDListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            dispose();
+            new AddCompactDiscToStoreScreen(store, cart);
+        }
+    }
+
+    protected class addDVDListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            dispose();
+            new AddDigitalVideoDiscToStoreScreen(store, cart);
         }
     }
 

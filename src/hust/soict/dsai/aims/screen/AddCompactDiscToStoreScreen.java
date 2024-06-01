@@ -17,7 +17,7 @@ public class AddCompactDiscToStoreScreen extends AddItemToStoreScreen {
     public AddCompactDiscToStoreScreen(Store store, Cart cart) {
         super(store, cart);
         this.mediaType = "CD";
-        this.fields = new String[]{"title, category, director, cost, artist, tracks list, length list"};
+        this.fields = new String[]{"title", "category", "director", "cost", "artist", "tracks list", "length list"};
 
         Container cp = getContentPane();
         cp.setLayout(new BorderLayout());

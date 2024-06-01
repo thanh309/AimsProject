@@ -3,8 +3,7 @@ package hust.soict.dsai.aims.screen.controller;
 import hust.soict.dsai.aims.cart.Cart;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
-import hust.soict.dsai.aims.screen.CartScreen;
-import hust.soict.dsai.aims.screen.StoreScreen;
+import hust.soict.dsai.aims.screen.*;
 import hust.soict.dsai.aims.store.Store;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
@@ -57,6 +56,15 @@ public class CartScreenController {
 
     @FXML
     private MenuItem menuViewCart;
+
+    @FXML
+    private MenuItem menuAddBook;
+
+    @FXML
+    private MenuItem menuAddCD;
+
+    @FXML
+    private MenuItem menuAddDVD;
 
     public CartScreenController(Cart cart, Store store) {
         super();
@@ -128,6 +136,24 @@ public class CartScreenController {
     @FXML
     void menuViewCartPressed(ActionEvent event) {
         new CartScreen(store, cart);
+        windowCloser.run();
+    }
+
+    @FXML
+    void menuAddBookPressed(ActionEvent event) {
+        new AddBookToStoreScreen(store, cart);
+        windowCloser.run();
+    }
+
+    @FXML
+    void menuAddCDPressed(ActionEvent event) {
+        new AddCompactDiscToStoreScreen(store, cart);
+        windowCloser.run();
+    }
+
+    @FXML
+    void menuAddDVDPressed(ActionEvent event) {
+        new AddDigitalVideoDiscToStoreScreen(store, cart);
         windowCloser.run();
     }
 
