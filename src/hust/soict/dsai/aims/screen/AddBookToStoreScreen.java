@@ -35,7 +35,7 @@ public class AddBookToStoreScreen extends AddItemToStoreScreen {
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(
                         null,
-                        "Book " + tfs.getFirst().getText() +  "added",
+                        "Book " + tfs.getFirst().getText() +  " added",
                         "Add book",
                         JOptionPane.INFORMATION_MESSAGE
                 );

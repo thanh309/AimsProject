@@ -37,7 +37,7 @@ public class AddCompactDiscToStoreScreen extends AddItemToStoreScreen {
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(
                         null,
-                        "CD " + tfs.getFirst().getText() +  "added",
+                        "CD " + tfs.getFirst().getText() +  " added",
                         "Add CD",
                         JOptionPane.INFORMATION_MESSAGE
                 );

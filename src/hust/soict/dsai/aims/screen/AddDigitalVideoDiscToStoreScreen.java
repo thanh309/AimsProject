@@ -11,7 +11,6 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 public class AddDigitalVideoDiscToStoreScreen extends AddItemToStoreScreen {
-
     public AddDigitalVideoDiscToStoreScreen(Store store, Cart cart) {
         super(store, cart);
         this.mediaType = "DVD";
@@ -35,7 +34,7 @@ public class AddDigitalVideoDiscToStoreScreen extends AddItemToStoreScreen {
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(
                         null,
-                        "DVD " + tfs.getFirst().getText() +  "added",
+                        "DVD " + tfs.getFirst().getText() +  " added",
                         "Add DVD",
                         JOptionPane.INFORMATION_MESSAGE
                 );

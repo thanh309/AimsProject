@@ -12,8 +12,8 @@ import java.util.List;
 
 public abstract class AddItemToStoreScreen extends StoreScreen {
 
-    protected String mediaType = "item";
-    protected String[] fields = new String[]{"title", "cost", "category"};
+    protected String mediaType;
+    protected String[] fields;
     protected JButton btnAddToStore;
 
     public AddItemToStoreScreen(Store store, Cart cart) {
@@ -78,13 +78,7 @@ public abstract class AddItemToStoreScreen extends StoreScreen {
         return createCustomCenter(fields);
     }
 
-    protected ActionListener getAddToStoreListener(List<JTextField> tfs) {
-        class addToStoreListener implements ActionListener {
-            @Override
-            public void actionPerformed(ActionEvent e) {}
-        }
-        return new addToStoreListener();
-    }
+    protected abstract ActionListener getAddToStoreListener(List<JTextField> tfs);
 
     protected static List<String> extractStrings(String namesString) {
         String[] stringArray = namesString.split(",");
@@ -95,7 +89,7 @@ public abstract class AddItemToStoreScreen extends StoreScreen {
         return stringList;
     }
 
-    public static List<Integer> extractNumbers(String numberString) {
+    protected static List<Integer> extractNumbers(String numberString) {
         String[] numbersArray = numberString.split(",");
         List<Integer> numbersList = new ArrayList<>();
         for (String number : numbersArray) {

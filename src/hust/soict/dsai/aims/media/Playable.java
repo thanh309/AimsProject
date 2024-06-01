@@ -42,7 +42,5 @@ public interface Playable {
         dialog.setVisible(true);
     }
 
-    default void playGUI() {
-        playGUI("", 0);
-    }
+    void playGUI();
 }
