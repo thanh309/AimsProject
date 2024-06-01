@@ -76,9 +76,8 @@ public class CartScreenController {
         tfFilter.textProperty().addListener((observable, oldValue, newValue) -> showFilteredMedia(newValue));
 
         totalCost.setText(String.format("%.2f", cart.totalCost()) + " $");
-        this.cart.getItemsOrdered().addListener((ListChangeListener<? super Media>) change -> {
-            totalCost.setText(String.format("%.2f", cart.totalCost()) + " $");
-        });
+        this.cart.getItemsOrdered().addListener((ListChangeListener<? super Media>) change ->
+                totalCost.setText(String.format("%.2f", cart.totalCost()) + " $"));
     }
 
     @FXML
