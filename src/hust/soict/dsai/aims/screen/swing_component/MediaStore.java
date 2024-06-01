@@ -3,6 +3,8 @@ package hust.soict.dsai.aims.screen.swing_component;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
 import hust.soict.dsai.aims.screen.StoreScreen;
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
 
 import javax.swing.*;
 import java.awt.*;
@@ -55,8 +57,23 @@ public class MediaStore extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            storeScreen.getCart().addMedia(media);
+            Platform.runLater(() -> {
+                boolean success = storeScreen.getCart().addMedia(media);
+                if (success) {
+                    displayDialog("Success", "Item added to cart.", Alert.AlertType.INFORMATION);
+                } else {
+                    displayDialog("Failure", "The cart is full.", Alert.AlertType.ERROR);
+                }
+            });
         }
+    }
+
+    private void displayDialog(String title, String content, Alert.AlertType alertType) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 
     private static class PlayListener implements ActionListener {

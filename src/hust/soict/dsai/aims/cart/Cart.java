@@ -12,11 +12,13 @@ public class Cart {
     private final ObservableList<Media> itemsOrdered = FXCollections.observableArrayList();
     private final FilteredList<Media> filteredList = new FilteredList<>(itemsOrdered, media -> true);
 
-    public void addMedia(Media... mediaList) {
+    public boolean addMedia(Media... mediaList) {
         if (itemsOrdered.size() + mediaList.length > MAX_NUMBERS_ORDERED) {
             System.out.println("The cart is full");
+            return false;
         } else {
             itemsOrdered.addAll(Arrays.asList(mediaList));
+            return true;
         }
     }
 
