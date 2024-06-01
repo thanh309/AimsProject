@@ -82,7 +82,7 @@
             </TableView>
             <ButtonBar>
               <buttons>
-                <Button fx:id="btnPlay" mnemonicParsing="false" text="Play" />
+                <Button fx:id="btnPlay" mnemonicParsing="false" onAction="#btnPlayPressed" text="Play" />
                   <Button fx:id="btnRemove" mnemonicParsing="false" onAction="#btnRemovePressed" text="Remove" />
               </buttons>
                <VBox.margin>
@@ -108,7 +108,7 @@
                         <Insets bottom="10.0" left="10.0" right="5.0" top="10.0" />
                      </padding>
                   </Label>
-                  <Label text="0 $" textFill="AQUA">
+                  <Label fx:id="totalCost" text="0 $" textFill="AQUA">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -118,7 +118,7 @@
                   </Label>
                </children>
             </HBox>
-            <Button mnemonicParsing="false" style="-fx-background-color: red;" text="Place Order" textFill="WHITE">
+            <Button fx:id="btnPlaceOrder" mnemonicParsing="false" onAction="#btnPlaceOrderPressed" style="-fx-background-color: red;" text="Place Order" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>

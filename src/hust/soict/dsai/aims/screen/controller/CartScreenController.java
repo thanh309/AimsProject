@@ -3,6 +3,7 @@ package hust.soict.dsai.aims.screen.controller;
 import hust.soict.dsai.aims.cart.Cart;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -16,6 +17,9 @@ public class CartScreenController {
 
     @FXML
     private Button btnRemove;
+
+    @FXML
+    private Button btnPlaceOrder;
 
     @FXML
     private TableView<Media> tblMedia;
@@ -40,6 +44,9 @@ public class CartScreenController {
 
     @FXML
     private TextField tfFilter;
+
+    @FXML
+    private Label totalCost;
 
     public CartScreenController(Cart cart) {
         super();
@@ -67,12 +74,33 @@ public class CartScreenController {
                     }
                 });
         tfFilter.textProperty().addListener((observable, oldValue, newValue) -> showFilteredMedia(newValue));
+
+        totalCost.setText(String.format("%.2f", cart.totalCost()) + " $");
+        this.cart.getItemsOrdered().addListener((ListChangeListener<? super Media>) change -> {
+            totalCost.setText(String.format("%.2f", cart.totalCost()) + " $");
+        });
     }
 
     @FXML
     void btnRemovePressed(ActionEvent event) {
         Media media = tblMedia.getSelectionModel().getSelectedItem();
         cart.removeMedia(media);
+    }
+
+    @FXML
+    void btnPlaceOrderPressed(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Order");
+        alert.setHeaderText(null);
+        alert.setContentText("Order has been placed.");
+        alert.showAndWait();
+        this.cart.getItemsOrdered().clear();
+    }
+
+    @FXML
+    void btnPlayPressed(ActionEvent event) {
+        Media media = this.tblMedia.getSelectionModel().getSelectedItem();
+        ((Playable) media).play();
     }
 
     void updateButtonBar(Media media) {
