@@ -13,8 +13,15 @@ import java.util.List;
 
 public class StoreScreen extends JFrame {
 
-    private final Store store;
-    private final Cart cart;
+    protected Store store;
+    protected Cart cart;
+    private int currentPage = 0;
+    private final int itemsPerPage = 9;
+    private JPanel centerPanel;
+    private JButton btnPrevious, btnNext;
+
+    public StoreScreen() {
+    }
 
     public StoreScreen(Store store, Cart cart) {
         this.store = store;
@@ -24,6 +31,7 @@ public class StoreScreen extends JFrame {
 
         cp.add(createNorth(), BorderLayout.NORTH);
         cp.add(createCenter(), BorderLayout.CENTER);
+        cp.add(createSouth(), BorderLayout.SOUTH);
 
         setVisible(true);
         setTitle("Store");
@@ -55,7 +63,9 @@ public class StoreScreen extends JFrame {
         smUpdateStore.add(new JMenuItem("Add DVD"));
 
         menu.add(smUpdateStore);
-        menu.add(new JMenuItem("View store"));
+        JMenuItem menuViewStore = new JMenuItem("View store");
+        menuViewStore.addActionListener(new viewStoreListener());
+        menu.add(menuViewStore);
 
         JMenuItem menuViewCart = new JMenuItem("View cart");
         menuViewCart.addActionListener(new viewCartListener());
@@ -77,6 +87,7 @@ public class StoreScreen extends JFrame {
         title.setForeground(Color.CYAN);
 
         JButton cart = new JButton("View cart");
+        cart.addActionListener(new viewCartListener());
         cart.setPreferredSize(new Dimension(100, 50));
         cart.setMaximumSize(new Dimension(100, 50));
 
@@ -90,21 +101,78 @@ public class StoreScreen extends JFrame {
     }
 
     JPanel createCenter() {
-        JPanel center = new JPanel();
-        center.setLayout(new GridLayout(3, 3, 2, 2));
+        centerPanel = new JPanel();
+        centerPanel.setLayout(new GridLayout(3, 3, 2, 2));
+        updateCenterPanel();
+        return centerPanel;
+    }
+
+    JPanel createSouth() {
+        JPanel south = new JPanel();
+        south.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+        btnPrevious = new JButton("Previous");
+        btnPrevious.addActionListener(e -> {
+            if (currentPage > 0) {
+                currentPage--;
+                updateCenterPanel();
+            }
+        });
+
+        btnNext = new JButton("Next");
+        btnNext.addActionListener(e -> {
+            if ((currentPage + 1) * itemsPerPage < store.getItemsInStore().size()) {
+                currentPage++;
+                updateCenterPanel();
+            }
+        });
+
+        south.add(btnPrevious);
+        south.add(btnNext);
+
+        updateNavigationButtons();
+
+        return south;
+    }
+
+    void updateCenterPanel() {
+        centerPanel.removeAll();
         List<Media> mediaInStore = store.getItemsInStore();
-        for (int i = 0; i < 9; i++) {
-            MediaStore cell = new MediaStore(mediaInStore.get(i), this);
-            center.add(cell);
+        int start = currentPage * itemsPerPage;
+        int end = Math.min(start + itemsPerPage, mediaInStore.size());
+        for (int i = start; i < end; i++) {
+            centerPanel.add(new MediaStore(mediaInStore.get(i), this));
         }
-        return center;
+        for (int i = end; i < start + itemsPerPage; i++) {
+            centerPanel.add(new JPanel());
+        }
+        centerPanel.revalidate();
+        centerPanel.repaint();
+        updateNavigationButtons();
+    }
+
+    void updateNavigationButtons() {
+        if (btnPrevious != null) {
+            btnPrevious.setEnabled(currentPage > 0);
+        }
+        if (btnNext != null) {
+            btnNext.setEnabled((currentPage + 1) * itemsPerPage < store.getItemsInStore().size());
+        }
     }
 
     protected class viewCartListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             dispose();
-            new CartScreen(cart, store);
+            new CartScreen(store, cart);
+        }
+    }
+
+    protected class viewStoreListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            dispose();
+            new StoreScreen(store, cart);
         }
     }
 

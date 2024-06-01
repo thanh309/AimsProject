@@ -3,6 +3,7 @@ package hust.soict.dsai.aims.screen.controller;
 import hust.soict.dsai.aims.cart.Cart;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
+import hust.soict.dsai.aims.screen.CartScreen;
 import hust.soict.dsai.aims.screen.StoreScreen;
 import hust.soict.dsai.aims.store.Store;
 import javafx.collections.ListChangeListener;
@@ -53,6 +54,9 @@ public class CartScreenController {
 
     @FXML
     private MenuItem menuViewStore;
+
+    @FXML
+    private MenuItem menuViewCart;
 
     public CartScreenController(Cart cart, Store store) {
         super();
@@ -111,14 +115,20 @@ public class CartScreenController {
 
     private Runnable windowCloser;
 
+    public void setWindowCloser(Runnable windowCloser) {
+        this.windowCloser = windowCloser;
+    }
+
     @FXML
     void menuViewStorePressed(ActionEvent event) {
         new StoreScreen(store, cart);
         windowCloser.run();
     }
 
-    public void setWindowCloser(Runnable windowCloser) {
-        this.windowCloser = windowCloser;
+    @FXML
+    void menuViewCartPressed(ActionEvent event) {
+        new CartScreen(store, cart);
+        windowCloser.run();
     }
 
     void updateButtonBar(Media media) {

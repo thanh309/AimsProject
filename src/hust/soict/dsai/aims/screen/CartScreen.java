@@ -17,7 +17,7 @@ import javax.swing.*;
 import java.io.IOException;
 
 public class CartScreen extends JFrame {
-    public CartScreen(Cart cart, Store store) {
+    public CartScreen(Store store, Cart cart) {
         super();
         this.setSize(1024, 768);
         JFXPanel fxPanel = new JFXPanel();
@@ -80,6 +80,6 @@ public class CartScreen extends JFrame {
         Store store = new Store();
         myCart.addMedia(dvd1, dvd1vip, dvd2, dvd3, dvd4, dvd4vip, dvd5, dvd6, dvd7, dvd8, dvd9, dvd10, cd, book);
         store.addMedia(dvd1, dvd1vip, dvd2, dvd3, dvd4, dvd4vip, dvd5, dvd6, dvd7, cd, book);
-        new CartScreen(myCart, store);
+        new CartScreen(store, myCart);
     }
 }

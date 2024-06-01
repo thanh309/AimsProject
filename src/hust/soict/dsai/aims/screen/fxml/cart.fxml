@@ -33,7 +33,7 @@
                           </items>
                         </Menu>
                         <MenuItem fx:id="menuViewStore" mnemonicParsing="false" onAction="#menuViewStorePressed" text="View Store" />
-                        <MenuItem mnemonicParsing="false" text="View Cart" />
+                        <MenuItem fx:id="menuViewCart" mnemonicParsing="false" onAction="#menuViewCartPressed" text="View Cart" />
                      </items>
                 </Menu>
               </menus>
