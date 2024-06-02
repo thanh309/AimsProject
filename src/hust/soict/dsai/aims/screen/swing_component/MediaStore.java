@@ -6,6 +6,7 @@ import hust.soict.dsai.aims.screen.StoreScreen;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 
+import javax.naming.LimitExceededException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -58,10 +59,10 @@ public class MediaStore extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             Platform.runLater(() -> {
-                boolean success = storeScreen.getCart().addMedia(media);
-                if (success) {
+                try {
+                    storeScreen.getCart().addMedia(media);
                     displayDialog("Success", "Item added to cart.", Alert.AlertType.INFORMATION);
-                } else {
+                } catch (LimitExceededException ex) {
                     displayDialog("Failure", "The cart is full.", Alert.AlertType.ERROR);
                 }
             });

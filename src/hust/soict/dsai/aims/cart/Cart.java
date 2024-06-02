@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
+import javax.naming.LimitExceededException;
 import java.util.Arrays;
 
 public class Cart {
@@ -12,13 +13,12 @@ public class Cart {
     private final ObservableList<Media> itemsOrdered = FXCollections.observableArrayList();
     private final FilteredList<Media> filteredList = new FilteredList<>(itemsOrdered, media -> true);
 
-    public boolean addMedia(Media... mediaList) {
+    public void addMedia(Media... mediaList) throws LimitExceededException {
         if (itemsOrdered.size() + mediaList.length > MAX_NUMBERS_ORDERED) {
-            System.out.println("The cart is full");
-            return false;
+            throw new LimitExceededException("ERROR: The number of "
+                    + "media has reached its limit");
         } else {
             itemsOrdered.addAll(Arrays.asList(mediaList));
-            return true;
         }
     }
 
