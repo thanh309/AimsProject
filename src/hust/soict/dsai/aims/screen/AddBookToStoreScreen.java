@@ -42,7 +42,7 @@ public class AddBookToStoreScreen extends AddItemToStoreScreen {
                 store.addMedia(new Book(
                         tfs.getFirst().getText(),
                         tfs.get(1).getText(),
-                        Integer.parseInt(tfs.get(2).getText()),
+                        Float.parseFloat(tfs.get(2).getText()),
                         extractStrings(tfs.get(3).getText())
                 ));
             }
