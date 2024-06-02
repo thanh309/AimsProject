@@ -7,16 +7,15 @@ import java.util.Comparator;
 import java.util.Objects;
 
 public abstract class Media {
-    private int id;
-    private String title;
-    private String category;
-    private float cost;
-    protected static int nbMedia = 0;
-
     public static final Comparator<Media> COMPARE_BY_TITLE_COST =
             new MediaComparatorByTitleCost();
     public static final Comparator<Media> COMPARE_BY_COST_TITLE =
             new MediaComparatorByCostTitle();
+    protected static int nbMedia = 0;
+    private int id;
+    private String title;
+    private String category;
+    private float cost;
 
     public Media(String title, String category, float cost) {
         this.title = title;
@@ -26,7 +25,7 @@ public abstract class Media {
         this.id = nbMedia;
     }
 
-    public Media(){
+    public Media() {
     }
 
     public int getId() {
@@ -51,10 +50,18 @@ public abstract class Media {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Media)) return false;
-        Media media = (Media) o;
-        return Objects.equals(getTitle(), media.getTitle());
+        try {
+            if (this == o) {
+                return true;
+            }
+            if (o == null) {
+                throw new NullPointerException();
+            }
+            Media media = (Media) o;
+            return Objects.equals(media.getTitle(), this.getTitle());
+        } catch (NullPointerException | ClassCastException ex) {
+            return false;
+        }
     }
 
     @Override
