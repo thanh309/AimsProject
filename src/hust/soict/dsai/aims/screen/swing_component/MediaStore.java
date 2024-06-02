@@ -1,5 +1,6 @@
 package hust.soict.dsai.aims.screen.swing_component;
 
+import hust.soict.dsai.aims.exception.PlayerException;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
 import hust.soict.dsai.aims.screen.StoreScreen;
@@ -86,7 +87,14 @@ public class MediaStore extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            this.playableMedia.playGUI();
+            try {
+                this.playableMedia.playGUI();
+            } catch (PlayerException ex) {
+                JOptionPane.showMessageDialog(null,
+                        "ERROR: " + ex.getMediaType() + " length is non-positive!",
+                        "Player Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 }

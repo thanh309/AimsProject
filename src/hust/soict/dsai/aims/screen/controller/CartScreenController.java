@@ -1,6 +1,7 @@
 package hust.soict.dsai.aims.screen.controller;
 
 import hust.soict.dsai.aims.cart.Cart;
+import hust.soict.dsai.aims.exception.PlayerException;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
 import hust.soict.dsai.aims.screen.*;
@@ -103,6 +104,7 @@ public class CartScreenController {
     void btnRemovePressed(ActionEvent event) {
         Media media = tblMedia.getSelectionModel().getSelectedItem();
         cart.removeMedia(media);
+        tblMedia.refresh();
     }
 
     @FXML
@@ -116,7 +118,7 @@ public class CartScreenController {
     }
 
     @FXML
-    void btnPlayPressed(ActionEvent event) {
+    void btnPlayPressed(ActionEvent event) throws PlayerException {
         Media media = this.tblMedia.getSelectionModel().getSelectedItem();
         ((Playable) media).playGUI();
     }
