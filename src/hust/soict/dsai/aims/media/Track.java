@@ -1,5 +1,7 @@
 package hust.soict.dsai.aims.media;
 
+import hust.soict.dsai.aims.exception.PlayerException;
+
 import java.util.Objects;
 
 public class Track implements Playable {
@@ -20,14 +22,18 @@ public class Track implements Playable {
     }
 
     @Override
-    public void play() {
-        System.out.println("Playing track: " + getTitle());
-        System.out.println("Track length: " + getLength());
+    public void play() throws PlayerException {
+        if (getLength() > 0) {
+            System.out.println("Playing track: " + getTitle());
+            System.out.println("Track length: " + getLength());
+        } else throw new PlayerException("Track", false);
     }
 
     @Override
-    public void playGUI() {
-        playGUI(title, length);
+    public void playGUI() throws PlayerException {
+        if (getLength() > 0) {
+            playGUI(title, length);
+        } else throw new PlayerException("Track", true);
     }
 
     @Override

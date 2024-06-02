@@ -1,12 +1,17 @@
 package hust.soict.dsai.aims.media;
 
+import hust.soict.dsai.aims.exception.PlayerException;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public interface Playable {
-    void play();
+
+    void play() throws PlayerException;
+
+    void playGUI() throws PlayerException;
 
     default void playGUI(String title, int length) {
         JDialog dialog = new JDialog();
@@ -41,6 +46,4 @@ public interface Playable {
         dialog.setLocationRelativeTo(null);
         dialog.setVisible(true);
     }
-
-    void playGUI();
 }

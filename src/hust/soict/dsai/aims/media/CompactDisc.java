@@ -1,5 +1,7 @@
 package hust.soict.dsai.aims.media;
 
+import hust.soict.dsai.aims.exception.PlayerException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,27 +65,37 @@ public class CompactDisc extends Disc implements Playable {
     }
 
     @Override
-    public void play() {
-        System.out.println("=================================================");
-        System.out.println("Playing CD: " + getTitle());
-        System.out.println("Total length: " + getLength());
-        System.out.println("=================================================");
-        for (Track track : tracks) {
-            track.play();
+    public void play() throws PlayerException {
+        if (getLength() > 0) {
+            System.out.println("=================================================");
+            System.out.println("Playing CD: " + getTitle());
+            System.out.println("Total length: " + getLength());
+            System.out.println("=================================================");
+            for (Track track : tracks) {
+                track.play();
+            }
+        } else {
+            throw new PlayerException("CD", false);
         }
     }
 
     @Override
-    public void playGUI() {
-        for (Track track : tracks) {
-            playGUI(getTitle() + " - Track: " + track.getTitle(), track.getLength());
-            // will lock up your app tho lol - I'm too lazy to implement this correctly
-            try {
-                Thread.sleep(track.getLength() * 1000L);
-            } catch (Exception ignored) {}
-        }
+    public void playGUI() throws PlayerException {
+        if (getLength() > 0) {
+            for (Track track : tracks) {
+                if (track.getLength() > 0) {
+                    playGUI(getTitle() + " - Track: " + track.getTitle(), track.getLength());
+                } else throw new PlayerException("Track", true);
+                try {
+                    Thread.sleep(track.getLength() * 1000L);
+                } catch (Exception ignored) {
+                }
+            }
+        } else throw new PlayerException("CD", true);
     }
 
+
+    // will lock up your app tho lol - I'm too lazy to implement this correctly
     @Override
     public String toString() {
         StringBuilder tracksInfo = new StringBuilder();
