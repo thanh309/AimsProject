@@ -5,6 +5,7 @@ import hust.soict.dsai.aims.media.CompactDisc;
 import hust.soict.dsai.aims.media.Track;
 import hust.soict.dsai.aims.store.Store;
 
+import javax.naming.LimitExceededException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -49,14 +50,16 @@ public class AddCompactDiscToStoreScreen extends AddItemToStoreScreen {
                     trackList.add(new Track(nameList.get(i), lengthList.get(i)));
                 }
 
-                store.addMedia(new CompactDisc(
-                        tfs.getFirst().getText(),
-                        tfs.get(1).getText(),
-                        tfs.get(2).getText(),
-                        Float.parseFloat(tfs.get(3).getText()),
-                        tfs.get(4).getText(),
-                        trackList
-                ));
+                try {
+                    store.addMedia(new CompactDisc(
+                            tfs.getFirst().getText(),
+                            tfs.get(1).getText(),
+                            tfs.get(2).getText(),
+                            Float.parseFloat(tfs.get(3).getText()),
+                            tfs.get(4).getText(),
+                            trackList
+                    ));
+                } catch (LimitExceededException ignored) {}
             }
         }
         return new addToStoreListener();

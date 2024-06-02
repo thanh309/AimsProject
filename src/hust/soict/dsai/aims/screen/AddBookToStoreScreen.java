@@ -4,6 +4,7 @@ import hust.soict.dsai.aims.cart.Cart;
 import hust.soict.dsai.aims.media.Book;
 import hust.soict.dsai.aims.store.Store;
 
+import javax.naming.LimitExceededException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -39,12 +40,14 @@ public class AddBookToStoreScreen extends AddItemToStoreScreen {
                         "Add book",
                         JOptionPane.INFORMATION_MESSAGE
                 );
-                store.addMedia(new Book(
-                        tfs.getFirst().getText(),
-                        tfs.get(1).getText(),
-                        Float.parseFloat(tfs.get(2).getText()),
-                        extractStrings(tfs.get(3).getText())
-                ));
+                try {
+                    store.addMedia(new Book(
+                            tfs.getFirst().getText(),
+                            tfs.get(1).getText(),
+                            Float.parseFloat(tfs.get(2).getText()),
+                            extractStrings(tfs.get(3).getText())
+                    ));
+                } catch (LimitExceededException ignored) {}
             }
         }
         return new addToStoreListener();

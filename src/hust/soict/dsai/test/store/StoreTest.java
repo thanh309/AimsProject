@@ -3,8 +3,10 @@ package hust.soict.dsai.test.store;
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.store.Store;
 
+import javax.naming.LimitExceededException;
+
 public class StoreTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws LimitExceededException {
 
         DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 87, 19.95f);
         DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars: Episode IV", "Sci-Fi", "George Lucas", 121, 14.99f);

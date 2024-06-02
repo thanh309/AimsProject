@@ -2,9 +2,11 @@ package hust.soict.dsai.aims.store;
 
 import hust.soict.dsai.aims.media.Media;
 
+import javax.naming.LimitExceededException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class Store {
     private static final int MAX_CAPACITY = 1000;
@@ -15,9 +17,9 @@ public class Store {
 
     private final List<Media> itemsInStore = new ArrayList<>();
 
-    public void addMedia(Media... mediaList) {
+    public void addMedia(Media... mediaList) throws LimitExceededException {
         if (itemsInStore.size() + mediaList.length > MAX_CAPACITY) {
-            System.out.println("The store is full");
+            throw new LimitExceededException("ERROR: The store is full");
         } else {
             itemsInStore.addAll(Arrays.asList(mediaList));
             System.out.println("The item(s) has been added");
@@ -29,7 +31,7 @@ public class Store {
             System.out.println("Item removed");
             return;
         }
-        System.out.println("Item is not in store");
+        throw new NoSuchElementException("ERROR: Item is not in store");
     }
 
     public int numberOfMedia() {

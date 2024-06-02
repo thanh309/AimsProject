@@ -7,6 +7,7 @@ import javafx.collections.transformation.FilteredList;
 
 import javax.naming.LimitExceededException;
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 public class Cart {
     public static final int MAX_NUMBERS_ORDERED = 20;
@@ -23,12 +24,12 @@ public class Cart {
     }
 
 
-    public void removeMedia(Media media) {
+    public void removeMedia(Media media) throws NoSuchElementException {
         if (itemsOrdered.remove(media)) {
             System.out.println("Item removed");
             return;
         }
-        System.out.println("Item is not in cart");
+        throw new NoSuchElementException("ERROR: Item is not in cart");
     }
 
     public float totalCost() {

@@ -4,6 +4,7 @@ import hust.soict.dsai.aims.cart.Cart;
 import hust.soict.dsai.aims.media.*;
 import hust.soict.dsai.aims.store.Store;
 
+import javax.naming.LimitExceededException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +20,7 @@ public class Aims {
     private static int choice;
     private static List<Integer> acceptedChoices;
 
-    private static void initializeStore() {
+    private static void initializeStore() throws LimitExceededException {
 
         DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 87, 19.95f);
         DigitalVideoDisc dvd1vip = new DigitalVideoDisc("The Lion King", "Animation - VIP", "Roger Allers", 90, 29.95f);
@@ -50,13 +51,13 @@ public class Aims {
         availableMedia.addMedia(dvd1, dvd1vip, dvd2, dvd3, dvd4, dvd4vip, dvd5, dvd6, dvd7, dvd8, dvd9, dvd10, cd, book);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws LimitExceededException {
         initializeStore();
         clearScreen();
         showMenu();
     }
 
-    public static void showMenu() {
+    public static void showMenu() throws LimitExceededException {
         clearScreen();
         System.out.println("AIMS: ");
         System.out.println(line);
@@ -90,7 +91,7 @@ public class Aims {
         }
     }
 
-    private static void cartMenu() {
+    private static void cartMenu() throws LimitExceededException {
         clearScreen();
         cart.print();
         System.out.println();
@@ -135,7 +136,7 @@ public class Aims {
         }
     }
 
-    private static void placeOrderMenu() {
+    private static void placeOrderMenu() throws LimitExceededException {
         clearScreen();
         System.out.println("Your order has been created successfully.");
         System.out.println();
@@ -163,7 +164,7 @@ public class Aims {
         }
     }
 
-    private static void removeFromCartApp() {
+    private static void removeFromCartApp() throws LimitExceededException {
         clearScreen();
         cart.print();
         String input;
@@ -188,7 +189,7 @@ public class Aims {
 
     }
 
-    private static void sortCartMenu() {
+    private static void sortCartMenu() throws LimitExceededException {
         clearScreen();
         System.out.println("Options: ");
         System.out.println(line);
@@ -227,7 +228,7 @@ public class Aims {
         cartMenu();
     }
 
-    private static void filterCartApp() {
+    private static void filterCartApp() throws LimitExceededException {
         clearScreen();
         String input;
 
@@ -261,7 +262,7 @@ public class Aims {
 
     }
 
-    private static void updateStoreMenu() {
+    private static void updateStoreMenu() throws LimitExceededException {
         clearScreen();
         store.print();
         System.out.println();
@@ -294,7 +295,7 @@ public class Aims {
         }
     }
 
-    private static void removeFromStoreApp() {
+    private static void removeFromStoreApp() throws LimitExceededException {
         clearScreen();
         store.print();
         String input;
@@ -319,7 +320,7 @@ public class Aims {
 
     }
 
-    private static void addToStoreApp() {
+    private static void addToStoreApp() throws LimitExceededException {
         clearScreen();
         System.out.println("All available media:");
         availableMedia.print();
@@ -342,7 +343,7 @@ public class Aims {
 
     }
 
-    private static void storeMenu() {
+    private static void storeMenu() throws LimitExceededException {
         clearScreen();
         store.print();
         System.out.println();
@@ -383,7 +384,7 @@ public class Aims {
         }
     }
 
-    private static void playMediaApp() {
+    private static void playMediaApp() throws LimitExceededException {
         clearScreen();
         System.out.println("All available media:");
         availableMedia.print();
@@ -405,7 +406,7 @@ public class Aims {
         }
     }
 
-    private static void addToCartApp() {
+    private static void addToCartApp() throws LimitExceededException {
         clearScreen();
         System.out.println("All available media in store:");
         store.print();
@@ -427,7 +428,7 @@ public class Aims {
         }
     }
 
-    private static void mediaDetailsMenu() {
+    private static void mediaDetailsMenu() throws LimitExceededException {
         clearScreen();
         while (true) {
             System.out.println();

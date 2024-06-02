@@ -4,6 +4,7 @@ import hust.soict.dsai.aims.cart.Cart;
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.store.Store;
 
+import javax.naming.LimitExceededException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -38,13 +39,15 @@ public class AddDigitalVideoDiscToStoreScreen extends AddItemToStoreScreen {
                         "Add DVD",
                         JOptionPane.INFORMATION_MESSAGE
                 );
-                store.addMedia(new DigitalVideoDisc(
-                        tfs.getFirst().getText(),
-                        tfs.get(1).getText(),
-                        tfs.get(2).getText(),
-                        Integer.parseInt(tfs.get(3).getText()),
-                        Float.parseFloat(tfs.get(4).getText())
-                ));
+                try {
+                    store.addMedia(new DigitalVideoDisc(
+                            tfs.getFirst().getText(),
+                            tfs.get(1).getText(),
+                            tfs.get(2).getText(),
+                            Integer.parseInt(tfs.get(3).getText()),
+                            Float.parseFloat(tfs.get(4).getText())
+                    ));
+                } catch (LimitExceededException ignored) {}
             }
         }
         return new addToStoreListener();
